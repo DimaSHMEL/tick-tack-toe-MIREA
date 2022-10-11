@@ -11,6 +11,7 @@ namespace TDD
 		
 		TEST_METHOD(TestMethod1)
 		{
+
 		}
 	};
 }
