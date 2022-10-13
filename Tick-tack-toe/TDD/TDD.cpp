@@ -34,10 +34,40 @@ namespace TDD
 				"O..\n"\
 				"OX.\n"\
 				".X.\n"\
-				"P2 WINS";
+				"OX.\n"\
+				"OX.\n"\
+				".X.\n"\
+				"P1 WINS";
 			Assert::AreEqual(out, need);
 		}
 		TEST_METHOD(TestMethod3)
+		{
+			string out = game("1 1 2 1 3 1 2 2 1 2 2 3");
+			string need = "...\n"\
+				"...\n"\
+				"...\n"\
+				"X..\n"\
+				"...\n"\
+				"...\n"\
+				"X..\n"\
+				"O..\n"\
+				"...\n"\
+				"X..\n"\
+				"O..\n"\
+				"X..\n"\
+				"X..\n"\
+				"OO.\n"\
+				"X..\n"\
+				"XX.\n"\
+				"OO.\n"\
+				"X..\n"\
+				"XX.\n"\
+				"OOO\n"\
+				"X..\n"\
+				"P2 WINS";
+			Assert::AreEqual(out, need);
+		}
+		TEST_METHOD(TestMethod4)
 		{
 			string out = game("ssss");
 			string need = "...\n"\

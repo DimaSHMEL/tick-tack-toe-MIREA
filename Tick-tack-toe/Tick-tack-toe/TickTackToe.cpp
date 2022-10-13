@@ -19,27 +19,6 @@ char** createTable()
 	return TickTackToe_Table;
 }
 
-bool clearTable(char **TickTackToe_Table)
-{
-	try {
-		TickTackToe_Table[0][0] =
-			TickTackToe_Table[0][1] =
-			TickTackToe_Table[0][2] =
-			TickTackToe_Table[1][0] =
-			TickTackToe_Table[1][1] =
-			TickTackToe_Table[1][2] =
-			TickTackToe_Table[2][0] =
-			TickTackToe_Table[2][1] =
-			TickTackToe_Table[2][2] =
-			'.';
-		
-	}
-	catch (...)
-	{
-		return false;
-	}
-	return true;
-}
 
 string writeTable(char **TickTackToe_Table)
 {
@@ -94,7 +73,7 @@ int checkWinner(char **table)
 			else if (table[i][1] == 'O')
 				return 2;
 		}
-		else if (table[0][i] == table[1][i] && table[i][1] == table[2][i])
+		else if (table[0][i] == table[1][i] && table[1][i] == table[2][i])
 		{
 			if (table[0][i] == 'X')
 				return 1;
@@ -160,9 +139,46 @@ string game(string input)
 
 }
 
+void game()
+{
+	char** table = createTable();
+	int player = 0;
+	char players[2] = { 'X', 'O' };
+	while ((!checkFull(table)) && checkWinner(table) == 0)
+	{
+		cout<<writeTable(table);
+		try {
+			int x, y;
+			cin >> x >> y;
+			if (x == 0 || y == 0)
+			{
+				throw invalid_argument("x is not");
+			}
+			while (!fill(--x, --y, players[(player % 2)], table))
+			{
+				cin >> x, y;
+			}
+		}
+		catch (...)
+		{
+			cout<<"INVALID INPUT TRY AGAIN";
+		}
+		player++;
+	}
+	cout<< writeTable(table);
+	if (checkWinner(table) != 0)
+	{
+		cout<< "P" + to_string(checkWinner(table)) + " WINS";
+	}
+	else
+	{
+		cout << "TIE";
+	}
+}
+
 int main()
 {
-	cout << game("sas");
-	
+	//cout << game("1 1 2 1 3 1 2 2 1 2 2 3");
+	game();
 	return 0;
 }
